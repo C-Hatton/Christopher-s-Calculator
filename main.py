@@ -6,7 +6,6 @@ from tkinter import *            #for Tk window
 import tkinter as tk             #to make Frame
 from sys import platform         #to make sure that the os is win32
 import ctypes                    #to make sure that the screen size is large enough
-import os                        #to allow help button open help web page
 
 name = "Christopher's Caclulator"
 
@@ -16,6 +15,11 @@ def f_main():
 
     root.title(name) 
     equation = ['']
+    font_style = 'Helvetica 25 bold'
+    button_background = 'black'
+    button_foreground = 'cyan'
+    answer_background = 'darkgray'
+    answer_foreground = 'lime'
 
     def on_click_1():
         equation[0] = ''.join((equation[0],'1'))
@@ -65,7 +69,7 @@ def f_main():
         answer.configure(text = equation[0])
 
     def on_click_delete():
-        equation[0] = str((equation[0]))[:-1]
+        equation[0] = ((equation[0]))[:-1]
         answer.configure(text = equation[0])
     def on_click_open_bracket():
         equation[0] = ''.join((equation[0],'('))
@@ -77,54 +81,69 @@ def f_main():
         x = equation[0]
         x = x.replace('÷','/')
         x = x.replace('x','*')
-        equation[0] = eval(x)
+        equation[0] = str(eval(x))
+        answer.configure(text = equation[0])
+
+    def on_click_clear():
+        equation[0] = ''
         answer.configure(text = equation[0])
 
     frame_buttons = tk.Frame(root)
-    button_1 = Button(frame_buttons,text = '1',font = 'Helvetica 25 bold',command = on_click_1)
+    button_1 = Button(frame_buttons,text = '1',font = font_style,command = on_click_1,bg = button_background,fg = button_foreground)
     button_1.grid(row = 0,column = 0,sticky = 'ew')
-    button_2 = Button(frame_buttons,text = '2',font = 'Helvetica 25 bold',command = on_click_2)
+    button_2 = Button(frame_buttons,text = '2',font = font_style,command = on_click_2,bg = button_background,fg = button_foreground)
     button_2.grid(row = 0,column = 1,sticky = 'ew')
-    button_3 = Button(frame_buttons,text = '3',font = 'Helvetica 25 bold',command = on_click_3)
+    button_3 = Button(frame_buttons,text = '3',font = font_style,command = on_click_3,bg = button_background,fg = button_foreground)
     button_3.grid(row = 0,column = 2,sticky = 'ew')
-    button_4 = Button(frame_buttons,text = '4',font = 'Helvetica 25 bold',command = on_click_4)
+    button_4 = Button(frame_buttons,text = '4',font = font_style,command = on_click_4,bg = button_background,fg = button_foreground)
     button_4.grid(row = 1,column = 0,sticky = 'ew')
-    button_5 = Button(frame_buttons,text = '5',font = 'Helvetica 25 bold',command = on_click_5)
+    button_5 = Button(frame_buttons,text = '5',font = font_style,command = on_click_5,bg = button_background,fg = button_foreground)
     button_5.grid(row = 1,column = 1,sticky = 'ew')
-    button_6 = Button(frame_buttons,text = '6',font = 'Helvetica 25 bold',command = on_click_6)
+    button_6 = Button(frame_buttons,text = '6',font = font_style,command = on_click_6,bg = button_background,fg = button_foreground)
     button_6.grid(row = 1,column = 2,sticky = 'ew')
-    button_7 = Button(frame_buttons,text = '7',font = 'Helvetica 25 bold',command = on_click_7)
+    button_7 = Button(frame_buttons,text = '7',font = font_style,command = on_click_7,bg = button_background,fg = button_foreground)
     button_7.grid(row = 2,column = 0,sticky = 'ew')
-    button_8 = Button(frame_buttons,text = '8',font = 'Helvetica 25 bold',command = on_click_8)
+    button_8 = Button(frame_buttons,text = '8',font = font_style,command = on_click_8,bg = button_background,fg = button_foreground)
     button_8.grid(row = 2,column = 1,sticky = 'ew')
-    button_9 = Button(frame_buttons,text = '9',font = 'Helvetica 25 bold',command = on_click_9)
+    button_9 = Button(frame_buttons,text = '9',font = font_style,command = on_click_9,bg = button_background,fg = button_foreground)
     button_9.grid(row = 2,column = 2,sticky = 'ew')
-    button_0 = Button(frame_buttons,text = '0',font = 'Helvetica 25 bold',command = on_click_0)
+    button_0 = Button(frame_buttons,text = '0',font = font_style,command = on_click_0,bg = button_background,fg = button_foreground)
     button_0.grid(row = 3,column = 0,sticky = 'ew')
-    button_decimal = Button(frame_buttons,text = '.',font = 'Helvetica 25 bold',command = on_click_decimal)
+    fill_1 = Label(frame_buttons,text = '',font = font_style,bg = button_background,fg = button_foreground)
+    fill_1.grid(row = 3,column = 2,sticky = 'nsew')
+    button_decimal = Button(frame_buttons,text = '.',font = font_style,command = on_click_decimal,bg = button_background,fg = button_foreground)
     button_decimal.grid(row = 3,column = 1,sticky = 'ew')
 
-    division = Button(frame_buttons,text = '÷',font = 'Helvetica 25 bold',command = on_click_division)
+    division = Button(frame_buttons,text = '÷',font = font_style,command = on_click_division,bg = button_background,fg = button_foreground)
     division.grid(row = 0,column = 3,sticky = 'ew')
-    times = Button(frame_buttons,text = 'x',font = 'Helvetica 25 bold',command = on_click_times)
+    times = Button(frame_buttons,text = 'x',font = font_style,command = on_click_times,bg = button_background,fg = button_foreground)
     times.grid(row = 1,column = 3,sticky = 'ew')
-    substract = Button(frame_buttons,text = '-',font = 'Helvetica 25 bold',command = on_click_substract)
+    substract = Button(frame_buttons,text = '-',font = font_style,command = on_click_substract,bg = button_background,fg = button_foreground)
     substract.grid(row = 2,column = 3,sticky = 'ew')
-    add = Button(frame_buttons,text = '+',font = 'Helvetica 25 bold',command = on_click_add)
+    add = Button(frame_buttons,text = '+',font = font_style,command = on_click_add,bg = button_background,fg = button_foreground)
     add.grid(row = 3,column = 3,sticky = 'ew')
 
-    delete = Button(frame_buttons,text = 'DEL',font = 'Helvetica 25 bold',command = on_click_delete)
+    delete = Button(frame_buttons,text = 'DEL',font = font_style,command = on_click_delete,bg = button_background,fg = button_foreground)
     delete.grid(row = 0,column = 4,sticky = 'ew')
-    open_bracket = Button(frame_buttons,text = '(',font = 'Helvetica 25 bold',command = on_click_open_bracket)
+    open_bracket = Button(frame_buttons,text = '(',font = font_style,command = on_click_open_bracket,bg = button_background,fg = button_foreground)
     open_bracket.grid(row = 1,column = 4,sticky = 'ew')
-    close_bracket = Button(frame_buttons,text = ')',font = 'Helvetica 25 bold',command = on_click_close_bracket)
+    close_bracket = Button(frame_buttons,text = ')',font = font_style,command = on_click_close_bracket,bg = button_background,fg = button_foreground)
     close_bracket.grid(row = 2,column = 4,sticky = 'ew')
-    equals = Button(frame_buttons,text = '=',font = 'Helvetica 25 bold',command = on_click_equals)
+    equals = Button(frame_buttons,text = '=',font = font_style,command = on_click_equals,bg = button_background,fg = button_foreground)
     equals.grid(row = 3,column = 4,sticky = 'ew')
 
-    answer = Label(text = equation[0],font = 'Helvetica 25 bold')
+    clear = Button(frame_buttons,text = 'CL',font = font_style,command = on_click_clear,bg = button_background,fg = button_foreground)
+    clear.grid(row = 0,column = 5,sticky = 'ew')
+    fill_2 = Button(frame_buttons,text = '',font = font_style,command = on_click_clear,bg = button_background,fg = button_foreground)
+    fill_2.grid(row = 1,column = 5,sticky = 'nsew')
+    fill_3 = Button(frame_buttons,text = '',font = font_style,command = on_click_clear,bg = button_background,fg = button_foreground)
+    fill_3.grid(row = 2,column = 5,sticky = 'nsew')
+    fill_4 = Button(frame_buttons,text = '',font = font_style,command = on_click_clear,bg = button_background,fg = button_foreground)
+    fill_4.grid(row = 3,column = 5,sticky = 'nsew')
 
-    answer.grid(row = 0,column = 0)
+    answer = Label(text = equation[0],font = font_style,bg = answer_background,fg = answer_foreground)
+
+    answer.grid(row = 0,column = 0,sticky = 'ew')
     frame_buttons.grid(row = 1,column = 0)
 
     root.mainloop()

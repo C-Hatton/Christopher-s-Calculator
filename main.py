@@ -199,13 +199,13 @@ def f_main():
 
     clear = Button(frame_buttons,text = 'CL',font = font_style,command = on_click_clear,bg = button_background,fg = button_foreground)
     clear.grid(row = 0,column = 5,sticky = 'ew')
-    fill_2 = Button(frame_buttons,text = '',font = font_style,command = on_click_clear,bg = button_background,fg = button_foreground)
+        fill_2 = Label(frame_buttons,text = '',font = font_style,bg = button_background,fg = button_foreground)
     fill_2.grid(row = 1,column = 5,sticky = 'nsew')
-    fill_3 = Button(frame_buttons,text = '',font = font_style,command = on_click_clear,bg = button_background,fg = button_foreground)
+    fill_3 = Label(frame_buttons,text = '',font = font_style,bg = button_background,fg = button_foreground)
     fill_3.grid(row = 2,column = 5,sticky = 'nsew')
-    fill_4 = Button(frame_buttons,text = '',font = font_style,command = on_click_clear,bg = button_background,fg = button_foreground)
+    fill_4 = Label(frame_buttons,text = '',font = font_style,bg = button_background,fg = button_foreground)
     fill_4.grid(row = 3,column = 5,sticky = 'nsew')
-
+    
     answer = Label(text = equation[0],font = font_style,bg = answer_background,fg = answer_foreground)
 
     answer.grid(row = 0,column = 0,sticky = 'ew')

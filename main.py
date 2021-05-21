@@ -14,6 +14,7 @@ def f_main():
     root = Tk()
 
     root.title(name) 
+    root.resizable(False, False) 
     equation = ['']
     font_style = 'Helvetica 25 bold'
     button_background = 'black'

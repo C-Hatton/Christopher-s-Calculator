@@ -119,6 +119,9 @@ def f_main():
     def on_press_0(event):
         equation[0] = ''.join((equation[0],'0'))
         answer.configure(text = equation[0])
+    def on_press_decimal(event):
+        equation[0] = ''.join((equation[0],'.'))
+        answer.configure(text = equation[0])
 
     def on_press_division(event):
         equation[0] = ''.join((equation[0],'÷'))
@@ -221,6 +224,7 @@ def f_main():
     root.bind('8', on_press_8)
     root.bind('9', on_press_9)
     root.bind('0', on_press_0)
+    root.bind('.',on_press_decimal)
 
     root.bind('/', on_press_division)
     root.bind('*', on_press_times)

@@ -18,8 +18,8 @@ def f_main():
     font_style = 'Helvetica 25 bold'
     button_background = 'black'
     button_foreground = 'cyan'
-    answer_background = 'darkgray'
-    answer_foreground = 'lime'
+    answer_background = 'white'
+    answer_foreground = 'black'
 
     def on_click_1():
         equation[0] = ''.join((equation[0],'1'))
@@ -87,6 +87,50 @@ def f_main():
     def on_click_clear():
         equation[0] = ''
         answer.configure(text = equation[0])
+        
+    def on_press_1(event):
+        equation[0] = ''.join((equation[0],'1'))
+        answer.configure(text = equation[0])
+    def on_press_2(event):
+        equation[0] = ''.join((equation[0],'2'))
+        answer.configure(text = equation[0])
+    def on_press_3(event):
+        equation[0] = ''.join((equation[0],'3'))
+        answer.configure(text = equation[0])
+    def on_press_4(event):
+        equation[0] = ''.join((equation[0],'4'))
+        answer.configure(text = equation[0])
+    def on_press_5(event):
+        equation[0] = ''.join((equation[0],'5'))
+        answer.configure(text = equation[0])
+    def on_press_6(event):
+        equation[0] = ''.join((equation[0],'6'))
+        answer.configure(text = equation[0])
+    def on_press_7(event):
+        equation[0] = ''.join((equation[0],'7'))
+        answer.configure(text = equation[0])
+    def on_press_8(event):
+        equation[0] = ''.join((equation[0],'8'))
+        answer.configure(text = equation[0])
+    def on_press_9(event):
+        equation[0] = ''.join((equation[0],'9'))
+        answer.configure(text = equation[0])
+    def on_press_0(event):
+        equation[0] = ''.join((equation[0],'0'))
+        answer.configure(text = equation[0])
+
+    def on_press_division(event):
+        equation[0] = ''.join((equation[0],'÷'))
+        answer.configure(text = equation[0])
+    def on_press_times(event):
+        equation[0] = ''.join((equation[0],'x'))
+        answer.configure(text = equation[0])
+    def on_press_subtract(event):
+        equation[0] = ''.join((equation[0],'-'))
+        answer.configure(text = equation[0])
+    def on_press_add(event):
+        equation[0] = ''.join((equation[0],'+'))
+        answer.configure(text = equation[0])
 
     frame_buttons = tk.Frame(root)
     button_1 = Button(frame_buttons,text = '1',font = font_style,command = on_click_1,bg = button_background,fg = button_foreground)
@@ -145,6 +189,22 @@ def f_main():
 
     answer.grid(row = 0,column = 0,sticky = 'ew')
     frame_buttons.grid(row = 1,column = 0)
+    
+    root.bind('1', on_press_1)
+    root.bind('2', on_press_2)
+    root.bind('3', on_press_3)
+    root.bind('4', on_press_4)
+    root.bind('5', on_press_5)
+    root.bind('6', on_press_6)
+    root.bind('7', on_press_7)
+    root.bind('8', on_press_8)
+    root.bind('9', on_press_9)
+    root.bind('0', on_press_0)
+
+    root.bind('/', on_press_division)
+    root.bind('*', on_press_times)
+    root.bind('-', on_press_subtract)
+    root.bind('+', on_press_add)
 
     root.mainloop()
 

@@ -132,6 +132,26 @@ def f_main():
         equation[0] = ''.join((equation[0],'+'))
         answer.configure(text = equation[0])
 
+    def on_press_delete(event):
+        equation[0] = ((equation[0]))[:-1]
+        answer.configure(text = equation[0])
+    def on_press_open_bracket(event):
+        equation[0] = ''.join((equation[0],'('))
+        answer.configure(text = equation[0])
+    def on_press_close_bracket(event):
+        equation[0] = ''.join((equation[0],')'))
+        answer.configure(text = equation[0])
+    def on_press_equals(event):
+        x = equation[0]
+        x = x.replace('÷','/')
+        x = x.replace('x','*')
+        equation[0] = str(eval(x))
+        answer.configure(text = equation[0])
+
+    def on_press_clear(event):
+        equation[0] = ''
+        answer.configure(text = equation[0])
+
     frame_buttons = tk.Frame(root)
     button_1 = Button(frame_buttons,text = '1',font = font_style,command = on_click_1,bg = button_background,fg = button_foreground)
     button_1.grid(row = 0,column = 0,sticky = 'ew')
@@ -205,6 +225,14 @@ def f_main():
     root.bind('*', on_press_times)
     root.bind('-', on_press_subtract)
     root.bind('+', on_press_add)
+
+    root.bind('<BackSpace>', on_press_delete)
+    root.bind('(', on_press_open_bracket)
+    root.bind(')', on_press_close_bracket)
+    root.bind('=', on_press_equals)
+    root.bind('<Return>', on_press_equals)
+
+    root.bind('c', on_press_clear)
 
     root.mainloop()
 

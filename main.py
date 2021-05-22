@@ -19,9 +19,9 @@ def f_main():
     
     #Sets the font:
     font_style = 'Helvetica 25 bold'
-    button_background = 'black'
-    button_foreground = 'cyan'
-    answer_background = 'white'
+    button_background = 'lightgray'
+    button_foreground = 'black'
+    answer_background = 'lightgray'
     answer_foreground = 'black'
 
 
@@ -132,6 +132,7 @@ def f_main():
         x = equation[0]
         x = x.replace('÷','/') #Changes the ÷ sign to /
         x = x.replace('x','*') #Changes the x sign to *
+        x = x.replace('X','*') #Changes the x sign to *
         while True:
             try:
                 equation[0] = str(eval(x)) #Solves the equation
@@ -139,6 +140,7 @@ def f_main():
                 break
             else:
                 answer.configure(text = equation[0]) #Configures the answer label to show this
+                break
 
 
     #Right-most column:
@@ -252,6 +254,7 @@ def f_main():
         x = equation[0]
         x = x.replace('÷','/') #Changes the ÷ sign to /
         x = x.replace('x','*') #Changes the x sign to *
+        x = x.replace('X','*') #Changes the x sign to *
         while True:
             try:
                 equation[0] = str(eval(x)) #Solves the equation
@@ -259,6 +262,7 @@ def f_main():
                 break
             else:
                 answer.configure(text = equation[0]) #Configures the answer label to show this
+                break
 
     def on_press_clear(event):
         equation[0] = '' #Deletes everything in the equation
@@ -326,7 +330,7 @@ def f_main():
     #Sort out answer label:
     answer = Label(text = equation[0],font = font_style,bg = answer_background,fg = answer_foreground)
 
-    answer.grid(row = 0,column = 0,sticky = 'ew')
+    answer.grid(row = 0,column = 0,sticky = 'nsew')
     frame_buttons.grid(row = 1,column = 0)
     
     #Bind key presses with fuctions:
@@ -344,6 +348,8 @@ def f_main():
 
     root.bind('/', on_press_division)
     root.bind('*', on_press_times)
+    root.bind('x', on_press_times)
+    root.bind('X', on_press_times)
     root.bind('-', on_press_subtract)
     root.bind('+', on_press_add)
 
@@ -399,3 +405,4 @@ elif platform == 'darwin':
     f_mac() #if os = osx, asks the user to get the osx version
 else:
     f_unknown_os() #for unknown os
+

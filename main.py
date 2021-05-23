@@ -23,7 +23,7 @@ def f_main():
     button_foreground = 'black'
     answer_background = 'lightgray'
     answer_foreground = 'black'
-
+    l_ans = [1]
 
     #Functions:
     
@@ -222,6 +222,7 @@ def f_main():
                 break
             else:
                 answer.configure(text = equation[0]) #Configures the answer label to show this
+                l_ans[0] = equation[0]
                 break
 
 
@@ -240,6 +241,11 @@ def f_main():
     #Onclick sqr_r
     def on_click_sqr_r():
         equation[0] = ''.join((equation[0],'√')) #Adds ) to the equation
+        answer.configure(text = equation[0]) #Configures the answer label to show this
+
+    #Onclick ans
+    def on_click_ans():
+        equation[0] = ''.join((equation[0],str(l_ans[0]))) #Adds ans to the equation
         answer.configure(text = equation[0]) #Configures the answer label to show this
     
 
@@ -436,54 +442,30 @@ def f_main():
                 break
             else:
                 answer.configure(text = equation[0]) #Configures the answer label to show this
+                l_ans[0] = equation[0]
                 break
 
-        if '²' in str(equation[0]):
-            x = equation[0]
-            #Gets the number to square:
-            a = ['16','16','16','16']
-            start = x.find('/') + len('/')
-            end = x.find('²')
-            y1 = x[start:end]
-            a[0] = y1
-            start = x.find('*') + len('*')
-            end = x.find('²')
-            y2 = x[start:end]
-            a[1] = y2
-            start = x.find('+') + len('+')
-            end = x.find('²')
-            y3 = x[start:end]
-            a[2] = y3
-            start = x.find('-') + len('-')
-            end = x.find('²')
-            y4 = x[start:end]
-            a[3] = y4
-            z_set = set(a)
-            z_list = list(z_set)
-            while True:
-                try:
-                    b = int(z_list[0])
-                except ValueError:
-                    b = int(z_list[1])
-                    break
-                else:
-                    b = int(z_list[0])
-                    break
-            b_squared = int(b) *  int(b) #Squares the number
-            x = x.replace(str(b) + '²',str(b_squared)) #Replaces n² with the value of n²
-            equation[0] = x
-        x = equation[0]
-        while True:
-            try:
-                equation[0] = str(eval(x)) #Solves the equation
-            except SyntaxError:
-                break
-            else:
-                answer.configure(text = equation[0]) #Configures the answer label to show this
-                break
 
+    #Right-most column:
+
+    #Onpress clear
     def on_press_clear(event):
         equation[0] = '' #Deletes everything in the equation
+        answer.configure(text = equation[0]) #Configures the answer label to show this
+
+    #Onclick sqr
+    def on_click_sqr():
+        equation[0] = ''.join((equation[0],'²')) #Adds ) to the equation
+        answer.configure(text = equation[0]) #Configures the answer label to show this
+
+    #Onclick sqr_r
+    def on_click_sqr_r():
+        equation[0] = ''.join((equation[0],'√')) #Adds ) to the equation
+        answer.configure(text = equation[0]) #Configures the answer label to show this
+
+    #Onclick ans
+    def on_click_ans():
+        equation[0] = ''.join((equation[0],str(l_ans[0]))) #Adds ans to the equation
         answer.configure(text = equation[0]) #Configures the answer label to show this
 
     frame_buttons = tk.Frame(root) #Make frame
@@ -540,10 +522,8 @@ def f_main():
     sqr.grid(row = 1,column = 5,sticky = 'ew')
     sqr_r = Button(frame_buttons,text = 'SQR R',font = font_style,command = on_click_sqr_r,bg = button_background,fg = button_foreground) #Clear button
     sqr_r.grid(row = 2,column = 5,sticky = 'ew')
-
-    #Fill:
-    fill_2 = Label(frame_buttons,text = '',font = font_style,bg = button_background,fg = button_foreground)
-    fill_2.grid(row = 3,column = 5,sticky = 'nsew')
+    ans = Button(frame_buttons,text = 'ANS',font = font_style,command = on_click_ans,bg = button_background,fg = button_foreground) #Clear button
+    ans.grid(row = 3,column = 5,sticky = 'ew')
 
     #Sort out answer label:
     answer = Label(text = equation[0],font = font_style,bg = answer_background,fg = answer_foreground)
@@ -623,3 +603,4 @@ elif platform == 'darwin':
     f_mac() #if os = osx, asks the user to get the osx version
 else:
     f_unknown_os() #for unknown os
+

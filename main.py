@@ -162,7 +162,15 @@ def f_main():
                 try:
                     b = int(z_list[0])
                 except ValueError:
-                    b = int(z_list[1])
+                    while True:
+                        try:
+                            b = int(z_list[1])
+                        except ValueError:
+                            b = int(z_list[2])
+                            break
+                        else:
+                            b = int(z_list[1])
+                            break
                     break
                 else:
                     b = int(z_list[0])
@@ -368,7 +376,15 @@ def f_main():
                 try:
                     b = int(z_list[0])
                 except ValueError:
-                    b = int(z_list[1])
+                    while True:
+                        try:
+                            b = int(z_list[1])
+                        except ValueError:
+                            b = int(z_list[2])
+                            break
+                        else:
+                            b = int(z_list[1])
+                            break
                     break
                 else:
                     b = int(z_list[0])

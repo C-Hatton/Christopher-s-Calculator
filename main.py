@@ -129,10 +129,84 @@ def f_main():
 
     #Onclick equals
     def on_click_equals():
-        x = equation[0]
+        x = equation[0] #Gets equation
         x = x.replace('÷','/') #Changes the ÷ sign to /
         x = x.replace('x','*') #Changes the x sign to *
         x = x.replace('X','*') #Changes the x sign to *
+        equation[0] = x
+
+        if '√' in str(equation[0]):
+            x = equation[0]
+            #Gets the number to square root
+            x = ''.join((equation[0],'+'))
+            a = ['16','16','16','16']
+            start = x.find('√') + len('√')
+            end = x.find('/')
+            y1 = x[start:end]
+            a[0] = y1
+            start = x.find('√') + len('√')
+            end = x.find('*')
+            y2 = x[start:end]
+            a[1] = y2
+            start = x.find('√') + len('√')
+            end = x.find('+')
+            y3 = x[start:end]
+            a[2] = y3
+            start = x.find('√') + len('√')
+            end = x.find('-')
+            y4 = x[start:end]
+            a[3] = y4     
+            z_set = set(a)
+            z_list = list(z_set)
+            while True:
+                try:
+                    b = int(z_list[0])
+                except ValueError:
+                    b = int(z_list[1])
+                    break
+                else:
+                    b = int(z_list[0])
+                    break
+            x = equation[0]
+            b_root = int(b)**0.5
+            x = x.replace('√' + str(b),str(b_root)) #Replaces √n with the value of √n 
+            equation[0] = x
+
+        if '²' in str(equation[0]):
+            x = equation[0]
+            #Gets the number to square:
+            a = ['16','16','16','16']
+            start = x.find('/') + len('/')
+            end = x.find('²')
+            y1 = x[start:end]
+            a[0] = y1
+            start = x.find('*') + len('*')
+            end = x.find('²')
+            y2 = x[start:end]
+            a[1] = y2
+            start = x.find('+') + len('+')
+            end = x.find('²')
+            y3 = x[start:end]
+            a[2] = y3
+            start = x.find('-') + len('-')
+            end = x.find('²')
+            y4 = x[start:end]
+            a[3] = y4
+            z_set = set(a)
+            z_list = list(z_set)
+            while True:
+                try:
+                    b = int(z_list[0])
+                except ValueError:
+                    b = int(z_list[1])
+                    break
+                else:
+                    b = int(z_list[0])
+                    break
+            b_squared = int(b) *  int(b) #Squares the number
+            x = x.replace(str(b) + '²',str(b_squared)) #Replaces n² with the value of n²
+            equation[0] = x
+        x = equation[0]
         while True:
             try:
                 equation[0] = str(eval(x)) #Solves the equation
@@ -148,6 +222,16 @@ def f_main():
     #Onclick clear
     def on_click_clear():
         equation[0] = '' #Deletes everything in the equation
+        answer.configure(text = equation[0]) #Configures the answer label to show this
+
+    #Onclick sqr
+    def on_click_sqr():
+        equation[0] = ''.join((equation[0],'²')) #Adds ) to the equation
+        answer.configure(text = equation[0]) #Configures the answer label to show this
+
+    #Onclick sqr_r
+    def on_click_sqr_r():
+        equation[0] = ''.join((equation[0],'√')) #Adds ) to the equation
         answer.configure(text = equation[0]) #Configures the answer label to show this
     
 
@@ -251,10 +335,84 @@ def f_main():
 
     #On press equals
     def on_press_equals(event):
-        x = equation[0]
+        x = equation[0] #Gets equation
         x = x.replace('÷','/') #Changes the ÷ sign to /
         x = x.replace('x','*') #Changes the x sign to *
         x = x.replace('X','*') #Changes the x sign to *
+        equation[0] = x
+
+        if '√' in str(equation[0]):
+            x = equation[0]
+            #Gets the number to square root
+            x = ''.join((equation[0],'+'))
+            a = ['16','16','16','16']
+            start = x.find('√') + len('√')
+            end = x.find('/')
+            y1 = x[start:end]
+            a[0] = y1
+            start = x.find('√') + len('√')
+            end = x.find('*')
+            y2 = x[start:end]
+            a[1] = y2
+            start = x.find('√') + len('√')
+            end = x.find('+')
+            y3 = x[start:end]
+            a[2] = y3
+            start = x.find('√') + len('√')
+            end = x.find('-')
+            y4 = x[start:end]
+            a[3] = y4     
+            z_set = set(a)
+            z_list = list(z_set)
+            while True:
+                try:
+                    b = int(z_list[0])
+                except ValueError:
+                    b = int(z_list[1])
+                    break
+                else:
+                    b = int(z_list[0])
+                    break
+            x = equation[0]
+            b_root = int(b)**0.5
+            x = x.replace('√' + str(b),str(b_root)) #Replaces √n with the value of √n 
+            equation[0] = x
+
+        if '²' in str(equation[0]):
+            x = equation[0]
+            #Gets the number to square:
+            a = ['16','16','16','16']
+            start = x.find('/') + len('/')
+            end = x.find('²')
+            y1 = x[start:end]
+            a[0] = y1
+            start = x.find('*') + len('*')
+            end = x.find('²')
+            y2 = x[start:end]
+            a[1] = y2
+            start = x.find('+') + len('+')
+            end = x.find('²')
+            y3 = x[start:end]
+            a[2] = y3
+            start = x.find('-') + len('-')
+            end = x.find('²')
+            y4 = x[start:end]
+            a[3] = y4
+            z_set = set(a)
+            z_list = list(z_set)
+            while True:
+                try:
+                    b = int(z_list[0])
+                except ValueError:
+                    b = int(z_list[1])
+                    break
+                else:
+                    b = int(z_list[0])
+                    break
+            b_squared = int(b) *  int(b) #Squares the number
+            x = x.replace(str(b) + '²',str(b_squared)) #Replaces n² with the value of n²
+            equation[0] = x
+        x = equation[0]
         while True:
             try:
                 equation[0] = str(eval(x)) #Solves the equation
@@ -318,14 +476,14 @@ def f_main():
     #Clear button and fill (also in frame) COLUMN 4
     clear = Button(frame_buttons,text = 'CL',font = font_style,command = on_click_clear,bg = button_background,fg = button_foreground) #Clear button
     clear.grid(row = 0,column = 5,sticky = 'ew')
+    sqr = Button(frame_buttons,text = 'SQR',font = font_style,command = on_click_sqr,bg = button_background,fg = button_foreground) #Clear button
+    sqr.grid(row = 1,column = 5,sticky = 'ew')
+    sqr_r = Button(frame_buttons,text = 'SQR R',font = font_style,command = on_click_sqr_r,bg = button_background,fg = button_foreground) #Clear button
+    sqr_r.grid(row = 2,column = 5,sticky = 'ew')
 
     #Fill:
     fill_2 = Label(frame_buttons,text = '',font = font_style,bg = button_background,fg = button_foreground)
-    fill_2.grid(row = 1,column = 5,sticky = 'nsew')
-    fill_3 = Label(frame_buttons,text = '',font = font_style,bg = button_background,fg = button_foreground)
-    fill_3.grid(row = 2,column = 5,sticky = 'nsew')
-    fill_4 = Label(frame_buttons,text = '',font = font_style,bg = button_background,fg = button_foreground)
-    fill_4.grid(row = 3,column = 5,sticky = 'nsew')
+    fill_2.grid(row = 3,column = 5,sticky = 'nsew')
 
     #Sort out answer label:
     answer = Label(text = equation[0],font = font_style,bg = answer_background,fg = answer_foreground)
@@ -405,4 +563,3 @@ elif platform == 'darwin':
     f_mac() #if os = osx, asks the user to get the osx version
 else:
     f_unknown_os() #for unknown os
-

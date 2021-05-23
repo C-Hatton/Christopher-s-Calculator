@@ -155,7 +155,7 @@ def f_main():
             start = x.find('√') + len('√')
             end = x.find('-')
             y4 = x[start:end]
-            a[3] = y4     
+            a[3] = y4
             z_set = set(a)
             z_list = list(z_set)
             while True:
@@ -369,7 +369,7 @@ def f_main():
             start = x.find('√') + len('√')
             end = x.find('-')
             y4 = x[start:end]
-            a[3] = y4     
+            a[3] = y4
             z_set = set(a)
             z_list = list(z_set)
             while True:
@@ -393,6 +393,50 @@ def f_main():
             b_root = int(b)**0.5
             x = x.replace('√' + str(b),str(b_root)) #Replaces √n with the value of √n 
             equation[0] = x
+
+        if '²' in str(equation[0]):
+            x = equation[0]
+            #Gets the number to square:
+            a = ['16','16','16','16']
+            start = x.find('/') + len('/')
+            end = x.find('²')
+            y1 = x[start:end]
+            a[0] = y1
+            start = x.find('*') + len('*')
+            end = x.find('²')
+            y2 = x[start:end]
+            a[1] = y2
+            start = x.find('+') + len('+')
+            end = x.find('²')
+            y3 = x[start:end]
+            a[2] = y3
+            start = x.find('-') + len('-')
+            end = x.find('²')
+            y4 = x[start:end]
+            a[3] = y4
+            z_set = set(a)
+            z_list = list(z_set)
+            while True:
+                try:
+                    b = int(z_list[0])
+                except ValueError:
+                    b = int(z_list[1])
+                    break
+                else:
+                    b = int(z_list[0])
+                    break
+            b_squared = int(b) *  int(b) #Squares the number
+            x = x.replace(str(b) + '²',str(b_squared)) #Replaces n² with the value of n²
+            equation[0] = x
+        x = equation[0]
+        while True:
+            try:
+                equation[0] = str(eval(x)) #Solves the equation
+            except SyntaxError:
+                break
+            else:
+                answer.configure(text = equation[0]) #Configures the answer label to show this
+                break
 
         if '²' in str(equation[0]):
             x = equation[0]

@@ -23,7 +23,7 @@ def f_main():
     button_foreground = 'black'
     answer_background = 'lightgray'
     answer_foreground = 'black'
-    l_ans = [1]
+    l_ans = ['']
 
     #Functions:
     
